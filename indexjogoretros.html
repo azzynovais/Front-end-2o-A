@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Azzy Novais</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet'>
+    <style>
+        /* Correções no CSS original */
+        body {
+            font-family: 'Permanent Marker';
+            font-size: 24px;
+            background-color: #dcf9ff;
+            color: #def2ff;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            background-image: url('./portfolio/img/background.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+
+        img {
+            opacity: 85%;
+        }
+
+        a:link {
+            color: rgb(251, 98, 98);
+            text-decoration: none;
+            opacity: 85%;
+        }
+
+        a:visited {
+            color: rgb(98, 242, 158);
+            text-decoration: none;
+            opacity: 85%;
+        }
+
+        a:hover {
+            color: rgb(19, 164, 231);
+            text-decoration: none;
+            opacity: 85%;
+        }
+
+        a:active {
+            color: rgb(0, 119, 255);
+            text-decoration: none;
+            opacity: 85%;
+        }
+
+        h1 {
+            background-color: #21a6ffbc;
+            text-align: center;
+            height: auto;
+            opacity: 85%;
+        }
+
+        h3 {
+            background-color: #acf15ed1;
+            text-align: center;
+            color: white;
+            height: auto;
+            opacity: 85%;
+        }
+
+        div {
+            height: auto;
+            opacity: 85%;
+        }
+
+        span {
+            background-color: #ff3b3bdd;
+            height: auto;
+            opacity: 85%;
+        }
+
+        /* Transições otimizadas */
+        * {
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+        }
+
+        /* Estilos do header */
+        .header {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem 1rem;
+            color: white;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .header h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .profile-image {
+            width: clamp(16px, 10vw, 24px);
+            height: clamp(16px, 10vw, 24px);
+            object-fit: cover;
+            margin-top: 1.5rem;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Conteúdo principal */
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .section {
+            background-color: rgba(0, 0, 0, 0.418);
+            padding: clamp(1.5rem, 5vw, 2.5rem);
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .section h2 {
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section h2::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #2be991, #4dabfa);
+        }
+
+        .section p {
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        /* Layouts de grid */
+        .projects-grid, .games-grid {
+            display: grid;
+            gap: clamp(1rem, 3vw, 2rem);
+            margin-top: 2rem;        }
+
+        @media (min-width: 480px) {
+            .projects-grid, .games-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .projects-grid, .games-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .projects-grid, .games-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Cards de projeto */
+        .project-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-image {
+            height: 200px;
+            background-color: #e1e8ed;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .project-image::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(77, 172, 250, 0.1), rgba(43, 233, 145, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover .project-image::before {
+            opacity: 1;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .project-info p {
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            color: #333;
+            opacity: 0.8;
+        }
+
+        /* Botões */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #4dabfa, #2b94e9);
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(77, 172, 250, 0.3);
+            text-decoration: none;
+        }
+
+        /* Seção de contato */
+        .contact-info {
+            text-align: center;
+        }
+
+        .contact-info .btn {
+            font-size: 1.1rem;
+            padding: 1rem 2rem;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>Azzy Novais</h1>
+            <p class="tagline">Paginas sobre Jogos Retros</p>
+            <img src="./portfolio/img/minha-foto.jpg" alt="Meu avatar!" class="profile-image" style="width:255px;height:255px;"> 
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="section">
+            <h2>O que seria os jogos retros?</h2>
+            <p>
+                Tem um espaço enorme pra jogos retros, como o de NES, SNES, GBA, e entre outros consoles, e jogos, como Super Mario World, Donkey Kong Country, Pokemon Fire Red & Emerald fazem uma obra de arte moderna paraecer fichinha, literalmente
+            </p>
+        </section>
+        </section>
+
+        <section class="section">
+            <h2>Porque são bons?</h2>
+            <p>
+        São extremamente jogaveis e faceis de acessar com um emulador como bsnes, snes9x, VBA-M, MGBA, Nestopia, e até centrais de emuladores como Retroarch, aqui terá tambem algumas hack roms sendo mostradas
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Jogos Retros</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('./portfolio/img/background-rom-1.jpg');"></div>
+                    <div class="project-info">
+                        <h3>Super Mario World</h3>
+                        <p>O nosso classico bigodudo vem salvar mais uma vez a princessa Beach do Bowser, com varias fases cativantes, e nostalgicas, e no final que todos perguntam no pai dos burros que é o Google ''Como matar o bauzer'', bons tempos</p>
+                        <a href="https://www.romsgames.net/super-nintendo-rom-super-mario-world/" target="_blank" class="btn" rel="noopener">Baixar ROM</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('./portfolio/img/background-rom-2.webp');"></div>
+                    <div class="project-info">
+                        <h3>Donkey Kong Country</h3>
+                        <p>Quem disse que Darwin estava certo, o monstro bombado Donkey Kong e seu fiel escudeiro Diddy Kong, vão em uma aventura pela grande selva pra derrotar o jacaré que ameaça sua paz .</p>
+                        <a href="https://romsportugues.com/donkey-kong-country/" target="_blank" class="btn" rel="noopener">Ver no GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('./portfolio/img/background-rom-3.webp');"></div>
+                    <div class="project-info">
+                        <h3>Pokémon Fire Red</h3>
+                        <p>O favorito das brigas de galo, quero dizer, pokémons, que definiu uma historia inteira de hack-roms, sendo utilizado de base até hoje, modificavel, até pra ninguem, e baseado em turnos, já fizeram um Dragon Ball em Pokémon, e historias totalmente unicas.</p>
+                        <a href="https://www.romsgames.net/gameboy-advance-rom-pokemon-firered-version/" target="_blank" class="btn" rel="noopener">Ver Projeto</a>
+                    </div>
+                </div>
+        </section>
+
+        <section class="section">
+            <h2>Hack-ROMs da Velha Guarda</h2>
+            <div class="games-grid">
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('./portfolio/img/background-hack-rom-1.webp');"></div>
+                    <div class="project-info">
+                        <h3>Pokémon Light Platinum</h3>
+                        <p>Um jogo inteiro de pokémon baseado no Pokémon Emerald, historia unica, fakemons, varias referencias, e entre varios outros.</p>
+                        <a href="https://pokebat.net/2017/04/pokemon-light-platinum-gba-pt-br-2.html" target="_blank" class="btn" rel="noopener">Jogar</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('./portfolio/img/background-hack-rom-2.webp');"></div>
+                    <div class="project-info">
+                        <h3>Pokémon Stone Dragon</h3>
+                        <p>O meu favorito, um jogo bem-feito, e feito por uma equipe brasileira ainda, que criou um jogo iconico e quase uma experiencia totalmente nova e unica.</p>
+                        <a href="https://www.dspoketuber.com/2020/07/pokemon-stone-dragon-em-portugues.html" target="_blank" class="btn" rel="noopener">Jogar</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('./portfolio/img/background-hack-rom-3.jpg');"></div>
+                    <div class="project-info">
+                        <h3>SMW: Aether: The Paramount Omnibus</h3>
+                        <p>Tambem um dos meus favoritos, baseado no Super Mario World, tem uma trilha sonora incrivel, level design criativo, e alem de ser uma recomendação minha.</p>
+                        <a href="https://www.smwcentral.net/?p=section&a=details&id=5471" target="_blank" class="btn" rel="noopener">Ver Código</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Contato</h2>
+            <div class="contact-info">
+                <p>Interessado em me chamar pra um projeto ou tem alguma dúvida? Entre em contato comigo!</p>
+                <a href="mailto:floatingfloatskies@protonmail.com" class="btn">floatingfloatskies@protonmail.com</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Azzy Novais - Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
