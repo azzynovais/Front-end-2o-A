@@ -6,21 +6,24 @@
     <title>Portfolio - Azzy Novais</title>
     <link rel="stylesheet" href="styles.css">
     <link href='https://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Correções no CSS original */
+        /* Base styles */
         body {
-            font-family: 'Permanent Marker';
-            font-size: 24px;
+            font-family: 'Permanent Marker', cursive; /* Ensure the font is applied */
+            font-size: 24px; /* Base font size, will scale with clamp */
             background-color: #dcf9ff;
             color: #def2ff;
             display: flex;
-            justify-content: center;
-            flex-direction: column;
+            flex-direction: column; /* Stack content vertically */
+            align-items: center; /* Center content horizontally */
             text-align: center;
-            background-image: url('./portfolio/img/background-main-alt.jpeg');
+            background-image: url('./portfolio/img/background-main.jpeg');
             background-repeat: no-repeat;
             background-attachment: fixed;
-            background-size: 100% 100%;
+            background-size: cover; /* Use cover to ensure background fills the area */
+            min-height: 100vh; /* Ensure body takes full viewport height */
+            margin: 0; /* Remove default body margin */
         }
 
         img {
@@ -51,41 +54,107 @@
             opacity: 85%;
         }
 
+        /* General heading styles - will be overridden by more specific ones */
         h1 {
             background-color: #21a6ffbc;
             text-align: center;
-            height: auto;
+            padding: 1rem;
             opacity: 85%;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         h3 {
             background-color: #acf15ed1;
             text-align: center;
             color: white;
-            height: auto;
+            padding: 0.5rem;
             opacity: 85%;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         div {
-            height: auto;
-            opacity: 85%;
+            opacity: 85%; /* Apply opacity broadly, specific elements can override */
         }
 
         span {
             background-color: #ff3b3bdd;
-            height: auto;
             opacity: 85%;
         }
 
-        /* Transições otimizadas */
+        /* Optimized transitions */
         * {
             transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 1rem 0;
+            position: fixed; /* Fixes navbar at the top */
+            top: 0;
+            left: 0;
+            z-index: 1000; /* Ensures it's above other content */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .navbar-brand {
+            color: white;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .navbar-menu {
+            display: flex; /* Horizontal on desktop */
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-item {
+            margin-left: 2rem;
+        }
+
+        .navbar-item a {
+            color: white;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            text-decoration: none;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-item a:hover {
+            color: #4dabfa;
+        }
+
+        .menu-toggle {
+            display: none; /* Hidden on desktop */
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001; /* Ensure toggle button is above menu when active */
         }
 
         /* Estilos do header */
         .header {
             position: relative;
             min-height: 100vh;
+            width: 100%; /* Take full width */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -94,6 +163,8 @@
             padding: 2rem 1rem;
             color: white;
             overflow: hidden;
+            box-sizing: border-box;
+            padding-top: 80px; /* Adjust for fixed navbar height */
         }
 
         .header::before {
@@ -112,6 +183,10 @@
             z-index: 2;
             max-width: 800px;
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .header h1 {
@@ -119,6 +194,8 @@
             margin-bottom: 1rem;
             font-weight: 700;
             letter-spacing: 1px;
+            background-color: transparent; /* Override global h1 background for header */
+            opacity: 1; /* Ensure full opacity for header text */
         }
 
         .tagline {
@@ -129,8 +206,10 @@
         }
 
         .profile-image {
-            width: clamp(16px, 10vw, 24px);
-            height: clamp(16px, 10vw, 24px);
+            /* Adjusted clamp values for an appropriate size range for a profile picture */
+            width: clamp(150px, 30vw, 255px);
+            height: clamp(150px, 30vw, 255px);
+            border-radius: 50%; /* Make it circular */
             object-fit: cover;
             margin-top: 1.5rem;
             border: 4px solid rgba(255, 255, 255, 0.3);
@@ -144,19 +223,22 @@
             50% { transform: translateY(-10px); }
         }
 
-        /* Conteúdo principal */
+        /* Main content */
         .main {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
+            width: 100%; /* Ensure main takes full width up to max-width */
+            margin: 2rem auto; /* Add top margin and auto horizontal margin */
+            padding: 0 1rem; /* Horizontal padding */
+            box-sizing: border-box;
         }
 
         .section {
-            background-color: rgba(28, 103, 233, 0.146);
+            background-color: rgba(31, 38, 51, 0.781);
             padding: clamp(1.5rem, 5vw, 2.5rem);
             margin-bottom: 2rem;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 8px; /* Added for softer edges */
         }
 
         .section:hover {
@@ -171,13 +253,16 @@
             font-weight: 600;
             position: relative;
             display: inline-block;
+            background-color: transparent; /* Override global h2 background */
+            opacity: 1; /* Ensure full opacity */
         }
 
         .section h2::after {
             content: "";
             position: absolute;
             bottom: -8px;
-            left: 0;
+            left: 50%; /* Center the underline */
+            transform: translateX(-50%); /* Center the underline */
             width: 60px;
             height: 3px;
             background: linear-gradient(90deg, #2be991, #4dabfa);
@@ -187,51 +272,43 @@
             font-size: clamp(0.9rem, 2.5vw, 1.1rem);
             line-height: 1.7;
             margin-bottom: 1rem;
+            color: #eee; /* Lighten text color for better contrast */
         }
 
-        /* Layouts de grid */
+        /* Flexbox for grid layouts */
         .projects-grid, .games-grid {
-            display: grid;
-            gap: clamp(1rem, 3vw, 2rem);
-            margin-top: 2rem;        }
-
-        @media (min-width: 480px) {
-            .projects-grid, .games-grid {
-                grid-template-columns: 1fr;
-            }
+            display: flex;
+            flex-wrap: wrap; /* Allow cards to wrap to the next line */
+            gap: 20px; /* Consistent gap between cards */
+            justify-content: center; /* Center cards horizontally */
+            margin-top: 2rem;
         }
 
-        @media (min-width: 768px) {
-            .projects-grid, .games-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .projects-grid, .games-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        /* Cards de projeto */
+        /* Project card styles */
         .project-card {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent white for content */
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column; /* Stack image, info, and button vertically */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            /* Flex basis for responsiveness - 3 cards per row by default */
+            flex: 1 1 calc(33.333% - 40px); /* 33.333% minus gap (20px * 2) */
+            max-width: calc(33.333% - 40px); /* Ensure max width for flex basis */
         }
 
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), 0 12px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
 
         .project-image {
-            height: 200px;
-            background-color: #e1e8ed;
+            width: 100%;
+            height: 180px; /* Fixed height for consistent image size */
             background-size: cover;
             background-position: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
         }
 
@@ -253,24 +330,30 @@
 
         .project-info {
             padding: 1.5rem;
+            text-align: left;
+            flex-grow: 1; /* Allows info section to take available space */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Pushes button to bottom */
         }
 
         .project-info h3 {
-            margin-bottom: 0.75rem;
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #333;
+            color: #ffffff;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            margin-bottom: 0.8rem;
+            background-color: transparent; /* Override global h3 background */
+            text-align: left;
+            opacity: 1; /* Ensure full opacity */
         }
 
         .project-info p {
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-            color: #333;
-            opacity: 0.8;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 1rem;
         }
 
-        /* Botões */
-        /* Botões */
+        /* Buttons */
         .btn {
             display: inline-block;
             padding: 0.75rem 1.5rem;
@@ -283,6 +366,8 @@
             border: none;
             cursor: pointer;
             font-size: 0.9rem;
+            border-radius: 5px; /* Added for softer edges */
+            margin-top: auto; /* Pushes the button to the bottom of the flex container */
         }
 
         .btn:hover {
@@ -291,38 +376,189 @@
             text-decoration: none;
         }
 
-        /* Seção de contato */
+        /* Contact section specific styles */
         .contact-info {
             text-align: center;
         }
 
         .contact-info .btn {
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 3vw, 1.1rem); /* Larger button for contact */
             padding: 1rem 2rem;
             margin-top: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 3rem;
+            padding: 1.5rem 1rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #ccc;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
+            opacity: 85%;
+        }
+
+        /* Media Queries for responsiveness */
+
+        /* Tablets and larger phones (2 cards per row) */
+        @media (max-width: 992px) {
+            .project-card {
+                flex: 1 1 calc(50% - 30px); /* 2 cards per row, with gap */
+                max-width: calc(50% - 30px);
+            }
+        }
+
+        /* Mobile styles for Navbar */
+        @media (max-width: 768px) {
+            .navbar-container {
+                flex-wrap: wrap; /* Allow items to wrap */
+                justify-content: center; /* Center items when wrapped */
+            }
+
+            .navbar-brand {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+
+            .navbar-menu {
+                flex-direction: column; /* Stack vertically */
+                width: 100%;
+                display: none; /* Hidden by default on mobile */
+                background-color: rgba(0, 0, 0, 0.9); /* Background for mobile menu */
+                padding-top: 1rem;
+            }
+
+            .navbar-menu.active {
+                display: flex; /* Show when active */
+            }
+
+            .navbar-item {
+                margin: 0; /* Remove horizontal margin */
+                width: 100%;
+                text-align: center;
+            }
+
+            .navbar-item a {
+                padding: 1rem 0; /* More vertical padding for tap area */
+                display: block; /* Make the whole area clickable */
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separator */
+            }
+
+            .navbar-item:last-child a {
+                border-bottom: none; /* No border on the last item */
+            }
+
+            .menu-toggle {
+                display: block; /* Show hamburger icon on mobile */
+                position: absolute; /* Position toggle button */
+                top: 1rem;
+                right: 1rem;
+            }
+
+            .header {
+                padding-top: 100px; /* More space for expanded navbar on mobile */
+            }
+
+            .project-card {
+                flex: 1 1 90%; /* 1 card per row */
+                max-width: 90%;
+            }
+        }
+
+        /* Smaller phones (1 card per row) */
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+            }
+
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            .main {
+                padding: 0 0.5rem; /* Less horizontal padding on very small screens */
+            }
+
+            .section {
+                padding: 1.2rem;
+            }
+
+            .project-card {
+                flex: 1 1 95%; /* Make cards a bit wider on very small screens */
+                max-width: 95%;
+            }
+
+            .section h2 {
+                font-size: 1.2rem;
+            }
+
+            .section p {
+                font-size: 0.9rem;
+            }
+
+            .project-info h3 {
+                font-size: 1rem;
+            }
+
+            .project-info p {
+                font-size: 0.85rem;
+            }
+
+            .btn {
+                font-size: 0.8rem;
+                padding: 0.6rem 1.2rem;
+            }
+
+            .contact-info .btn {
+                font-size: 0.9rem;
+                padding: 0.8rem 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-brand">Azzy Novais</a>
+            <button class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i> </button>
+            <ul class="navbar-menu" id="navbar-menu">
+                <li class="navbar-item"><a href="#sobre-mim">Sobre Mim</a></li>
+                <li class="navbar-item"><a href="#tecnologias">Tecnologias</a></li>
+                <li class="navbar-item"><a href="#formacao">Formação</a></li>
+                <li class="navbar-item"><a href="#projetos-web">Projetos Web</a></li>
+                <li class="navbar-item"><a href="#jogos">Jogos</a></li>
+                <li class="navbar-item"><a href="#contato">Contato</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <header class="header">
         <div class="header-content">
             <h1>Azzy Novais</h1>
             <p class="tagline">Desenvolvedor Full-Stack | Designer | Game Developer</p>
-            <img src="./portfolio/img/minha-foto.jpg" alt="Meu avatar!" class="profile-image" style="width:255px;height:255px;"> 
+            <img src="./portfolio/img/minha-foto.png" alt="Meu avatar!" class="profile-image"> 
         </div>
     </header>
 
     <main class="main">
-        <section class="section">
+        <section class="section" id="sobre-mim">
             <h2>Sobre Mim</h2>
             <p>
                 Heya! Sou desenvolvedor full-stack com várias experiências em Python, JavaScript, HTML e CSS. 
                 Estou há 1 ano e meio no mundo da programação e design, sempre buscando aprender e criar soluções. 
-                Também trabalho com design e UX/UI, combinando funcionalidade com uma experiência visual atrativa.
+                Também trabalho com **design e UX/UI**, combinando funcionalidade com uma experiência visual atrativa.
             </p>
         </section>
 
-        <section class="section">
+        <section class="section" id="tecnologias">
             <h2>Tecnologias</h2>
             <p>
                 <strong>Linguagens:</strong> Python, JavaScript, HTML5, CSS3, Lua<br>
@@ -332,15 +568,15 @@
             </p>
         </section>
 
-        <section class="section">
+        <section class="section" id="formacao">
             <h2>Formação</h2>
             <p>
-                Atualmente estou cursando Técnico em Informática no Instituto Federal de Rondônia, 
+                Atualmente estou cursando **Técnico em Informática** no Instituto Federal de Rondônia, 
                 estou no segundo ano do ensino médio. Esta formação me proporciona uma base sólida, além de mexer com computadores desde os 3 anos.
             </p>
         </section>
 
-        <section class="section">
+        <section class="section" id="projetos-web">
             <h2>Projetos Web</h2>
             <div class="projects-grid">
                 <div class="project-card">
@@ -381,7 +617,7 @@
             </div>
         </section>
 
-        <section class="section">
+        <section class="section" id="jogos">
             <h2>Jogos</h2>
             <div class="games-grid">
                 <div class="project-card">
@@ -413,7 +649,7 @@
             </div>
         </section>
 
-        <section class="section">
+        <section class="section" id="contato">
             <h2>Contato</h2>
             <div class="contact-info">
                 <p>Interessado em me chamar pra um projeto ou tem alguma dúvida? Entre em contato comigo!</p>
@@ -431,14 +667,42 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                const navbarHeight = document.querySelector('.navbar').offsetHeight; // Get dynamic navbar height
+
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    // Adjust scroll position to account for fixed navbar
+                    const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - navbarHeight - 20; // Added 20px extra offset
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
                     });
+
+                    // Close mobile menu after clicking a link
+                    const navbarMenu = document.getElementById('navbar-menu');
+                    if (navbarMenu.classList.contains('active')) {
+                        navbarMenu.classList.remove('active');
+                        document.getElementById('menu-toggle').innerHTML = '<i class="fas fa-bars"></i>'; // Change back to bars
+                    }
                 }
             });
+        });
+
+        // Toggle mobile menu
+        const menuToggle = document.getElementById('menu-toggle');
+        const navbarMenu = document.getElementById('navbar-menu');
+
+        menuToggle.addEventListener('click', () => {
+            navbarMenu.classList.toggle('active');
+            // Change icon based on menu state
+            if (navbarMenu.classList.contains('active')) {
+                menuToggle.innerHTML = '<i class="fas fa-times"></i>'; // 'X' icon
+            } else {
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>'; // Hamburger icon
+            }
         });
     </script>
 </body>

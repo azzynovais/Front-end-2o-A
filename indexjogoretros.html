@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
-        /* Correções no CSS original */
+        /* CSS Original Mantido - Adições para responsividade e tabelas */
         body {
             font-family: 'Press Start 2P';
             font-size: 24px;
@@ -17,16 +17,17 @@
             justify-content: center;
             flex-direction: column;
             text-align: center;
-            background-image: url('./portfolio/img/background.jpg');
+            background-image: url('./portfolio/images/backgroundretro.png');
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: 100% 100%;
         }
-    .press-start-2p-regular {
-    font-family: "Press Start 2P", system-ui;
-    font-weight: 400;
-     font-style: normal;
-}
+
+        .press-start-2p-regular {
+            font-family: "Press Start 2P", system-ui;
+            font-weight: 400;
+            font-style: normal;
+        }
 
         img {
             opacity: 85%;
@@ -82,12 +83,10 @@
             opacity: 85%;
         }
 
-        /* Transições otimizadas */
         * {
             transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
         }
 
-        /* Estilos do header */
         .header {
             position: relative;
             min-height: 100vh;
@@ -134,22 +133,20 @@
         }
 
         .profile-image {
-            width: clamp(16px, 10vw, 24px);
-            height: clamp(16px, 10vw, 24px);
+            width: 255px; /* Manter o tamanho fixo como no original */
+            height: 255px; /* Manter o tamanho fixo como no original */
             object-fit: cover;
             margin-top: 1.5rem;
             border: 4px solid rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(10px);
             animation: float 6s ease-in-out infinite;
         }
-        
 
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
         }
 
-        /* Conteúdo principal */
         .main {
             max-width: 1200px;
             margin: 0 auto;
@@ -157,11 +154,12 @@
         }
 
         .section {
-            background-color: rgba(0, 0, 0, 0.418);
+            background-color: rgba(0, 0, 0, 0.753);
             padding: clamp(1.5rem, 5vw, 2.5rem);
             margin-bottom: 2rem;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 8px; /* Adicionado para um visual mais suave */
         }
 
         .section:hover {
@@ -194,233 +192,855 @@
             margin-bottom: 1rem;
         }
 
-        /* Layouts de grid */
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 1rem 0;
+            flex-wrap: wrap; /* Permite que os botões quebrem a linha */
+            gap: 10px; /* Espaçamento entre os botões */
+        }
+
+        .nav-menu button {
+            background-color: #6a0dad; /* Roxo */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-menu button:hover {
+            background-color: #8a2be2; /* Roxo mais claro */
+            transform: translateY(-2px);
+        }
+
+        .nav-menu button.active {
+            background-color: #00bcd4; /* Ciano para ativo */
+            box-shadow: 0 0 15px rgba(0, 188, 212, 0.7);
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
         .projects-grid, .games-grid {
-            display: grid;
-            gap: clamp(1rem, 3vw, 2rem);
-            margin-top: 2rem;        }
-
-        @media (min-width: 480px) {
-            .projects-grid, .games-grid {
-                grid-template-columns: 1fr;
-            }
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 2rem;
         }
 
-        @media (min-width: 768px) {
-            .projects-grid, .games-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .projects-grid, .games-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        /* Cards de projeto */
         .project-card {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            flex: 1 1 calc(33.333% - 40px); /* 3 cards per row, with gap */
+            max-width: calc(33.333% - 40px);
+            display: flex;
+            flex-direction: column;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), 0 12px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
 
         .project-image {
-            height: 200px;
-            background-color: #e1e8ed;
+            width: 100%;
+            height: 180px;
             background-size: cover;
             background-position: center;
-            position: relative;
-        }
-
-        .project-image::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(77, 172, 250, 0.1), rgba(43, 233, 145, 0.1));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .project-card:hover .project-image::before {
-            opacity: 1;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .project-info {
             padding: 1.5rem;
+            text-align: left;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .project-info h3 {
-            margin-bottom: 0.75rem;
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #333;
+            color: #ffffff;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            margin-bottom: 0.8rem;
+            background-color: transparent; /* Sobrescreve o h3 global */
+            text-align: left;
+            height: auto;
+            opacity: 100%;
         }
 
         .project-info p {
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-            color: #333;
-            opacity: 0.8;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 1rem;
         }
 
-        /* Botões */
         .btn {
             display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background: linear-gradient(135deg, #4dabfa, #2b94e9);
+            background-color: #ff6b6b;
             color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
             text-decoration: none;
-            font-weight: 500;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            font-family: 'Press Start 2P', cursive;
+            transition: background-color 0.3s ease;
+            margin-top: auto; /* Empurra o botão para baixo */
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(77, 172, 250, 0.3);
-            text-decoration: none;
+            background-color: #ee5253;
         }
 
-        /* Seção de contato */
-        .contact-info {
-            text-align: center;
+        /* Tabela de Estatísticas */
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            overflow: hidden; /* Garante bordas arredondadas */
+            color: #eee;
         }
 
-        .contact-info .btn {
+        .stats-table th, .stats-table td {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        .stats-table th {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #ffffff;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stats-table tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .stats-table tr:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Responsividade com Media Queries e Flexbox */
+        @media (max-width: 992px) {
+            .project-card {
+                flex: 1 1 calc(50% - 30px); /* 2 cards per row on medium screens */
+                max-width: calc(50% - 30px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-direction: column; /* Botões de navegação empilhados */
+                align-items: center;
+            }
+
+            .nav-menu button {
+                width: 90%; /* Ocupam mais largura */
+                margin-bottom: 10px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+            }
+
+            .profile-image {
+                width: 180px; /* Reduzir um pouco a imagem no mobile */
+                height: 180px;
+            }
+
+            .project-card {
+                flex: 1 1 90%; /* 1 card per row on small screens */
+                max-width: 90%;
+            }
+
+            .section h2 {
+                font-size: 1.2rem;
+            }
+
+            .section p {
+                font-size: 0.9rem;
+            }
+
+            .stats-table th, .stats-table td {
+                padding: 8px 10px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main {
+                padding: 1rem 0.5rem;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+        }
+
+        /* Estilos para a página de História (ajustes básicos) */
+        .history-timeline {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 2rem;
+            position: relative;
+        }
+
+        .history-timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #00bcd4; /* Cor da linha do tempo */
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 45%;
+            text-align: left;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: -10px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: -10px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 10px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .timeline-point {
+            width: 20px;
+            height: 20px;
+            background-color: #00bcd4;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            transform: translateX(-50%);
+            z-index: 1;
+            border: 2px solid white;
+        }
+
+        .timeline-content h3 {
+            color: #ffffff;
+            margin-bottom: 10px;
             font-size: 1.1rem;
-            padding: 1rem 2rem;
-            margin-top: 1rem;
+            background-color: transparent; /* Reset */
+            text-align: left; /* Reset */
+            opacity: 100%; /* Reset */
+        }
+
+        .timeline-content p {
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+
+        @media (max-width: 768px) {
+            .history-timeline::before {
+                left: 20px;
+                transform: translateX(0);
+            }
+            .timeline-item {
+                flex-direction: column !important;
+                align-items: flex-start;
+            }
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 40px;
+            }
+            .timeline-item:nth-child(odd) .timeline-content::after,
+            .timeline-item:nth-child(even) .timeline-content::after {
+                border: none; /* Remove triangle */
+            }
+            .timeline-content::before {
+                content: '';
+                position: absolute;
+                top: 20px;
+                left: -10px; /* Adjust to point from the line */
+                width: 0;
+                height: 0;
+                border-top: 10px solid transparent;
+                border-bottom: 10px solid transparent;
+                border-right: 10px solid rgba(255, 255, 255, 0.15);
+            }
+            .timeline-point {
+                left: 20px;
+                transform: translateX(-50%);
+            }
         }
     </style>
+    <script>
+        function showPage(pageId) {
+            // Remove 'active' from all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            // Add 'active' to the selected page
+            document.getElementById(pageId).classList.add('active');
+
+            // Update active button styling
+            document.querySelectorAll('.nav-menu button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById(pageId + '-btn').classList.add('active');
+        }
+
+        // Set 'home' as active on initial load
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('home');
+        });
+    </script>
 </head>
 <body>
-    <header class="header">
-        <div class="header-content">
-            <h1>Azzy Novais</h1>
-            <p class="tagline">Paginas sobre Jogos Retros</p>
-            <img src="./portfolio/img/minha-foto.jpg" alt="Meu avatar!" class="profile-image" style="width:255px;height:255px;"> 
-        </div>
-    </header>
+    <nav class="nav-menu">
+        <button onclick="showPage('home')" class="active" id="home-btn">Início</button>
+        <button onclick="showPage('jogos')" id="jogos-btn">Jogos Clássicos</button>
+        <button onclick="showPage('hackroms')" id="hackroms-btn">Hack-ROMs</button>
+        <button onclick="showPage('historia')" id="historia-btn">História</button>
+        <button onclick="showPage('estatisticas')" id="estatisticas-btn">Estatísticas</button>
+    </nav>
 
-    <main class="main">
-        <section class="section">
-            <h2>O que seria os jogos retros?</h2>
-            <p>
-                Tem um espaço enorme pra jogos retros, como o de NES, SNES, GBA, e entre outros consoles, e jogos, como Super Mario World, Donkey Kong Country, Pokemon Fire Red & Emerald fazem uma obra de arte moderna paraecer fichinha, literalmente
-            </p>
-        </section>
-        </section>
-
-        <section class="section">
-            <h2>Porque são bons?</h2>
-            <p>
-        São extremamente jogaveis e faceis de acessar com um emulador como bsnes, snes9x, VBA-M, MGBA, Nestopia, e até centrais de emuladores como Retroarch, aqui terá tambem algumas hack roms sendo mostradas
-            </p>
-        </section>
-
-        <section class="section">
-            <h2>Jogos Retros</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('./portfolio/img/background-rom-1.jpg');"></div>
-                    <div class="project-info">
-                        <h3>Super Mario World</h3>
-                        <p>O nosso classico bigodudo vem salvar mais uma vez a princessa Peach do Bowser, com varias fases cativantes, e nostalgicas, e no final que todos perguntam no pai dos burros que é o Google ''Como matar o bauzer'', bons tempos</p>
-                        <a href="https://www.romsgames.net/super-nintendo-rom-super-mario-world/" target="_blank" class="btn" rel="noopener">Baixar ROM</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('./portfolio/img/background-rom-2.webp');"></div>
-                    <div class="project-info">
-                        <h3>Donkey Kong Country</h3>
-                        <p>Quem disse que Darwin estava certo, o monstro bombado Donkey Kong e seu fiel escudeiro Diddy Kong, vão em uma aventura pela grande selva pra derrotar o jacaré que ameaça sua paz .</p>
-                        <a href="https://romsportugues.com/donkey-kong-country/" target="_blank" class="btn" rel="noopener">Ver no GitHub</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('./portfolio/img/background-rom-3.webp');"></div>
-                    <div class="project-info">
-                        <h3>Pokémon Fire Red</h3>
-                        <p>O favorito das brigas de galo, quero dizer, pokémons, que definiu uma historia inteira de hack-roms, sendo utilizado de base até hoje, modificavel, até pra ninguem, e baseado em turnos, já fizeram um Dragon Ball em Pokémon, e historias totalmente unicas.</p>
-                        <a href="https://www.romsgames.net/gameboy-advance-rom-pokemon-firered-version/" target="_blank" class="btn" rel="noopener">Ver Projeto</a>
-                    </div>
-                </div>
-        </section>
-
-        <section class="section">
-            <h2>Hack-ROMs da Velha Guarda</h2>
-            <div class="games-grid">
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('./portfolio/img/background-hack-rom-1.webp');"></div>
-                    <div class="project-info">
-                        <h3>Pokémon Light Platinum</h3>
-                        <p>Um jogo inteiro de pokémon baseado no Pokémon Emerald, historia unica, fakemons, varias referencias, e entre varios outros.</p>
-                        <a href="https://pokebat.net/2017/04/pokemon-light-platinum-gba-pt-br-2.html" target="_blank" class="btn" rel="noopener">Jogar</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('./portfolio/img/background-hack-rom-2.webp');"></div>
-                    <div class="project-info">
-                        <h3>Pokémon Stone Dragon</h3>
-                        <p>O meu favorito, um jogo bem-feito, e feito por uma equipe brasileira ainda, que criou um jogo iconico e quase uma experiencia totalmente nova e unica.</p>
-                        <a href="https://www.dspoketuber.com/2020/07/pokemon-stone-dragon-em-portugues.html" target="_blank" class="btn" rel="noopener">Jogar</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('./portfolio/img/background-hack-rom-3.jpg');"></div>
-                    <div class="project-info">
-                        <h3>SMW: Aether: The Paramount Omnibus</h3>
-                        <p>Tambem um dos meus favoritos, baseado no Super Mario World, tem uma trilha sonora incrivel, level design criativo, e alem de ser uma recomendação minha.</p>
-                        <a href="https://www.smwcentral.net/?p=section&a=details&id=5471" target="_blank" class="btn" rel="noopener">Ver Código</a>
-                    </div>
-                </div>
+    <div id="home" class="page active">
+        <header class="header">
+            <div class="header-content">
+                <h1>Azzy Novais</h1>
+                <p class="tagline">Páginas sobre Jogos Retros</p>
+                <img src="./portfolio/img/minha-foto.png" alt="Meu avatar!" class="profile-image"> 
             </div>
-        </section>
+        </header>
 
-        <section class="section">
-            <h2>Contato</h2>
-            <div class="contact-info">
-                <p>Interessado em me chamar pra um projeto ou tem alguma dúvida? Entre em contato comigo!</p>
-                <a href="mailto:floatingfloatskies@protonmail.com" class="btn">floatingfloatskies@protonmail.com</a>
-            </div>
-        </section>
-    </main>
+        <main class="main">
+            <section class="section">
+                <h2>O que são os jogos retros?</h2>
+                <p>
+                    Existe um espaço enorme para jogos retros, como os de NES, SNES, GBA, e entre outros consoles. Títulos como Super Mario World, Donkey Kong Country, e Pokémon Fire Red & Emerald são verdadeiras obras de arte que, para muitos, fazem a "arte moderna" parecer algo secundário. Estes jogos representam uma era dourada do gaming, onde a criatividade e a jogabilidade eram as prioridades absolutas, superando os gráficos ultra-realistas.
+                </p>
+                <p>
+                    Os jogos retros são notáveis por sua simplicidade mecânica, mas com uma complexidade incrível em design. Eles conseguem ser desafiadores sem serem frustrantes, envolventes sem serem viciantes de forma prejudicial, e memoráveis sem precisar de cutscenes de 20 minutos. Eles cativaram milhões e continuam a fazê-lo, provando que um bom design de jogo é atemporal.
+                </p>
+            </section>
 
-    <footer class="footer">
-        <p>&copy; 2025 Azzy Novais - Todos os direitos reservados</p>
-    </footer>
+            <section class="section">
+                <h2>Por que são tão bons?</h2>
+                <p>
+                    São extremamente jogáveis e fáceis de acessar com um emulador como bsnes, snes9x, VBA-M, mGBA, Nestopia, e até mesmo centrais de emuladores mais robustas como o RetroArch. A facilidade de acesso, aliada à sua jogabilidade refinada, os torna perfeitos para qualquer um que queira revisitar ou descobrir a magia desses títulos.
+                </p>
+                <p>
+                    A comunidade de preservação é incrivelmente ativa, mantendo esses jogos vivos e acessíveis para novas gerações. Além disso, muitos destes jogos influenciaram diretamente o desenvolvimento de games modernos, sendo estudados por desenvolvedores até hoje. Eles estabeleceram as bases para gêneros inteiros e inovações que vemos nos jogos atuais.
+                </p>
+            </section>
+
+            <section class="section">
+                <h2>Jogos Retros Populares</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image" style="background-image: url('./portfolio/img/background-rom-1.jpg');"></div>
+                        <div class="project-info">
+                            <h3>Super Mario World (SNES)</h3>
+                            <p>O nosso clássico bigodudo vem salvar mais uma vez a princesa Peach do Bowser, em um reino de fases cativantes e nostálgicas. Quem nunca se perguntou "Como matar o Bowser" no Google? Bons tempos de exploração, segredos e a introdução do Yoshi!</p>
+                            <a href="https://www.romsgames.net/super-nintendo-rom-super-mario-world/" target="_blank" class="btn" rel="noopener">Baixar ROM</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image" style="background-image: url('./portfolio/img/background-rom-2.webp');"></div>
+                        <div class="project-info">
+                            <h3>Donkey Kong Country (SNES)</h3>
+                            <p>Em uma reviravolta criativa, o macaco bombado Donkey Kong e seu fiel escudeiro Diddy Kong embarcam em uma aventura pela grande selva para recuperar suas bananas roubadas do temível King K. Rool. Conhecido por seus gráficos revolucionários para a época e trilha sonora inesquecível.</p>
+                            <a href="https://romsportugues.com/donkey-kong-country/" target="_blank" class="btn" rel="noopener">Baixar ROM</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image" style="background-image: url('./portfolio/img/background-rom-3.webp');"></div>
+                        <div class="project-info">
+                            <h3>Pokémon Fire Red (GBA)</h3>
+                            <p>O favorito das batalhas de criaturas, Pokémon Fire Red não apenas definiu uma história inteira de hack-ROMs, mas é utilizado como base até hoje. Um RPG de turnos onde você explora a região de Kanto, captura e treina Pokémon, e se torna o campeão. Sua jogabilidade é infinitamente modificável e re-jogável.</p>
+                            <a href="https://www.romsgames.net/gameboy-advance-rom-pokemon-firered-version/" target="_blank" class="btn" rel="noopener">Baixar ROM</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="jogos" class="page">
+        <main class="main">
+            <h1>Jogos Clássicos Imperdíveis</h1>
+            
+            <section class="section">
+                <h2>Os Maiores Clássicos de Todos os Tempos</h2>
+                <p>
+                    Aqui estão os jogos que definiram gerações inteiras de gamers. Cada um destes títulos trouxe inovações que ainda são utilizadas hoje, e suas histórias e mecânicas permanecem atemporais. Eles são pilares da história dos videogames.
+                </p>
+            </section>
+
+            <section class="section">
+                <h2>Nintendo Entertainment System (NES)</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image" style="background-image: url('./portfolio/img/background-rom-4.jpg');"></div>
+                        <div class="project-info">
+                            <h3>Super Mario Bros.</h3>
+                            <p>O jogo que salvou a indústria de videogames! Mario em sua primeira grande aventura para salvar a Princesa Peach do malvado Bowser. Simples, divertido e incrivelmente viciante, com fases icônicas e segredos que todos amavam descobrir.</p>
+                            <a href="#" class="btn">Jogar Agora</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image" style="background-image: url('./portfolio/img/background-rom-5.jpg');"></div>
+                        <div class="project-info">
+                            <h3>The Legend of Zelda</h3>
+                            <p>A aventura épica de Link começou aqui! Explore masmorras traiçoeiras, colete itens mágicos e salve a Princesa Zelda das garras de Ganon neste clássico de ação e aventura que fundou uma das maiores franquias da Nintendo.</p>
+                            <a href="#" class="btn">Jogar Agora</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image" style="background-image: url('./portfolio/img/background-rom-6.jpg');"></div>
+                        <div class="project-info">
+                            <h3>Mega Man 2</h3>
+                            <p>Considerado por muitos o melhor da série clássica de Mega Man. Enfrente 8 Robot Masters únicos, cada um com suas próprias fraquezas, em uma aventura cheia de ação, plataformas desafiadoras e uma trilha sonora lendária que marcou época.</p>
+                            <a href="#" class="btn">Jogar Agora</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Super Nintendo (SNES)</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image" style="background-image: url('./portfolio/img/background-rom-10.jpg');"></div>
+                        <div class="project-info">
+                            <h3>Super Metroid</h3>
+                            <p>Samus Aran em sua melhor aventura metroidvania! Explore o vasto e atmosférico planeta Zebes em busca dos últimos Metroids, descobrindo novas habilidades e segredos. Um marco no design de níveis e atmosfera.</p>
+                            <a href="#" class="btn">Jogar Agora</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image" style="background-image: url('./portfolio/img/background-rom-8.jpg');"></div>
+                        <div class="project-info">
+                            <h3>Chrono Trigger</h3>
+                            <p>Um dos melhores RPGs já criados, desenvolvido por uma "dream team"! Viaje através do tempo para salvar o mundo de uma ameaça cataclísmica nesta aventura épica com múltiplos finais, personagens memoráveis e um sistema de batalha inovador.</p>
+                            <a href="#" class="btn">Jogar Agora</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image" style="background-image: url('./portfolio/img/background-rom-8.webp');"></div>
+                        <div class="project-info">
+                            <h3>Street Fighter II</h3>
+                            <p>O rei dos jogos de luta que deu início a uma febre global! Escolha entre 8 lutadores únicos, cada um com seus próprios movimentos especiais, e domine as arenas de combate neste clássico competitivo que revolucionou o gênero.</p>
+                            <a href="#" class="btn">Jogar Agora</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Game Boy Advance (GBA)</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image" style="background-image: url('./portfolio/img/background-rom-9.jpg');"></div>
+                        <div class="project-info">
+                            <h3>Pokémon Emerald</h3>
+                            <p>A aventura definitiva na região de Hoenn, combinando elementos de Ruby e Sapphire. Capture todos os Pokémon, desafie as Equipes Aqua e Magma, e torne-se o campeão da Liga Pokémon nesta edição aprimorada com a lendária Battle Frontier.</p>
+                            <a href="#" class="btn">Jogar Agora</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image" style="background-image: url('./portfolio/img/background-rom-7.jpg');"></div>
+                        <div class="project-info">
+                            <h3>Metroid: Fusion</h3>
+                            <p>Samus infectada pelo parasita X! Uma aventura mais linear, claustrofóbica e tensa na estação espacial BSL. Com uma atmosfera de terror e suspense, este jogo oferece uma experiência única na saga Metroid, com destaque para a perseguição pelo temível SA-X.</p>
+                            <a href="#" class="btn">Jogar Agora</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image" style="background-image: url('./portfolio/img/background-rom-11.avif');"></div>
+                        <div class="project-info">
+                            <h3>Advance Wars</h3>
+                            <p>Estratégia militar por turnos no seu melhor! Comande exércitos, utilize diferentes unidades e domine o campo de batalha em campanhas desafiadoras e envolventes. Conhecido por sua profundidade tática e charme visual.</p>
+                            <a href="#" class="btn">Jogar Agora</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="hackroms" class="page">
+        <main class="main">
+            <h1>Hack-ROMs da Velha Guarda</h1>
+            
+            <section class="section">
+                <h2>O que são Hack-ROMs?</h2>
+                <p>
+                    Hack-ROMs são modificações criadas por fãs em jogos originais. Elas podem adicionar novas histórias, 
+                    personagens, mecânicas de jogo aprimoradas, gráficos melhorados, ou até mesmo criar experiências completamente novas 
+                    usando a base de jogos clássicos. Representam a paixão, a criatividade e a engenhosidade da comunidade gamer, expandindo a vida útil de títulos amados.
+                </p>
+                <p>
+                    A cena de hack-ROMs é particularmente vibrante para jogos como Pokémon e Super Mario World, onde a comunidade tem liberdade para criar universos paralelos e desafios inovadores, mantendo a essência dos originais, mas com um toque fresco e inesperado.
+                </p>
+            </section>
+
+            <section class="section">
+                <h2>As Melhores Hack-ROMs (Exemplos Populares)</h2>
+                <div class="games-grid">
+                    <div class="project-card">
+                        <div class="project-image" style="background-image: url('./portfolio/img/background-hack-rom-1.webp');"></div>
+                        <div class="project-info">
+                            <h3>Pokémon Light Platinum (GBA)</h3>
+                            <p>Uma das hack-ROMs de Pokémon mais aclamadas! Baseada em Pokémon Ruby, esta versão oferece uma história única, novas regiões (Zhery e Lauren), mais de 100 Fakémons (Pokémon criados por fãs), novos líderes de ginásio, Elite Four e campeões. É quase um jogo oficial de tão bem feito.</p>
+                            <a href="https://pokebat.net/2017/04/pokemon-light-platinum-gba-pt-br-2.html" target="_blank" class="btn" rel="noopener">Baixar</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image" style="background-image: url('./portfolio/img/background-hack-rom-2.webp');"></div>
+                        <div class="project-info">
+                            <h3>Pokémon Stone Dragon (GBA)</h3>
+                            <p>O meu favorito, e com orgulho, feito por uma talentosa equipe brasileira! Pokémon Stone Dragon é um jogo bem-feito que cria uma experiência totalmente nova e única, com uma narrativa envolvente, novos Pokémon e desafios que prendem a atenção do início ao fim.</p>
+                            <a href="https://www.dspoketuber.com/2020/07/pokemon-stone-dragon-em-portugues.html" target="_blank" class="btn" rel="noopener">Baixar</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image" style="background-image: url('./portfolio/img/background-rom-6.jpg');"></div>
+                        <div class="project-info">
+                            <h3>Super Mario World: Return to Dinosaur Land (SNES)</h3>
+                            <p>Uma hack-ROM notável que expande o universo de Super Mario World com dezenas de novas fases, desafios criativos e um nível de dificuldade que fará os fãs do original suarem a camisa. Mantém o charme do jogo base, mas com um frescor surpreendente.</p>
+                            <a href="#" class="btn">Baixar</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image" style="background-image: url('./portfolio/img/background-rom-4.jpg');"></div>
+                        <div class="project-info">
+                            <h3>Pokémon Ash Gray (GBA)</h3>
+                            <p>Para os fãs do anime, esta hack-ROM permite reviver a jornada de Ash Ketchum desde o início, seguindo de perto os eventos da primeira temporada. Capture os mesmos Pokémon que Ash, enfrente os mesmos desafios e reviva a nostalgia da sua infância.</p>
+                            <a href="#" class="btn">Baixar</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image" style="background-image: url('./portfolio/img/background-hackrom-7.png');"></div>
+                        <div class="project-info">
+                            <h3>Kaizo Mario World (SNES)</h3>
+                            <p>Cuidado! Esta é para os masoquistas e especialistas. Uma série de hack-ROMs de Super Mario World conhecidas por sua dificuldade extrema e armadilhas cruéis. Não é para os fracos de coração, mas oferece um desafio insano para quem busca testar seus limites.</p>
+                            <a href="#" class="btn">Baixar</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image" style="background-image: url('./portfolio/img/background-hackrom-5.png');"></div>
+                        <div class="project-info">
+                            <h3>Pokémon Glazed (GBA)</h3>
+                            <p>Outra joia das hack-ROMs de Pokémon, com três regiões para explorar, uma história cativante envolvendo dimensões paralelas, e a inclusão de Pokémon de várias gerações. É um jogo completo e polido, que oferece muitas horas de diversão.</p>
+                            <a href="#" class="btn">Baixar</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="historia" class="page">
+        <main class="main">
+            <h1>A História dos Jogos Retros</h1>
+            
+            <section class="section">
+                <h2>Uma Viagem no Tempo pelos Videogames</h2>
+                <p>
+                    A história dos jogos retros é fascinante e cheia de inovações que moldaram a indústria de videogames como a conhecemos hoje. Desde os primórdios dos consoles até a explosão de criatividade dos anos 80 e 90, cada era contribuiu com títulos lendários e avanços tecnológicos.
+                </p>
+                <p>
+                    Vamos explorar alguns dos momentos mais importantes e consoles que definiram o que hoje chamamos de "retro gaming".
+                </p>
+            </section>
+
+            <section class="section">
+                <h2>Linha do Tempo dos Consoles Clássicos</h2>
+                <div class="history-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>1972: Magnavox Odyssey</h3>
+                            <p>O primeiro console de videogame doméstico comercial. Embora simples, abriu caminho para toda a indústria.</p>
+                        </div>
+                        <div class="timeline-point"></div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>1977: Atari 2600</h3>
+                            <p>Popularizou os videogames com seu sistema de cartuchos. Títulos como Space Invaders e Pac-Man se tornaram fenômenos culturais.</p>
+                        </div>
+                        <div class="timeline-point"></div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>1983: O Crash dos Videogames</h3>
+                            <p>Uma saturação do mercado e jogos de baixa qualidade levaram a um colapso da indústria, especialmente nos EUA.</p>
+                        </div>
+                        <div class="timeline-point"></div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>1985: Nintendo Entertainment System (NES)</h3>
+                            <p>O NES (Famicom no Japão) revitalizou a indústria após o crash. Com Super Mario Bros., estabeleceu novos padrões de qualidade e jogabilidade.</p>
+                        </div>
+                        <div class="timeline-point"></div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>1989: Game Boy</h3>
+                            <p>Nintendo lança o Game Boy, tornando os jogos portáteis uma realidade massiva com Tetris como seu carro-chefe.</p>
+                        </div>
+                        <div class="timeline-point"></div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>1990: Super Nintendo Entertainment System (SNES)</h3>
+                            <p>A era de ouro dos 16 bits. O SNES trouxe gráficos e áudio aprimorados, com jogos como Super Metroid, Zelda: A Link to the Past e Chrono Trigger.</p>
+                        </div>
+                        <div class="timeline-point"></div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>1991: SEGA Genesis (Mega Drive)</h3>
+                            <p>Principal rival do SNES, o Genesis focou em velocidade e jogos mais "maduros", com o Sonic the Hedgehog como seu mascote.</p>
+                        </div>
+                        <div class="timeline-point"></div>
+                    </div>
+                     <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>2001: Game Boy Advance (GBA)</h3>
+                            <p>Um portátil poderoso que trouxe gráficos coloridos e capacidade de jogos complexos para o formato portátil, com sucessos como Pokémon Ruby/Sapphire e Metroid Fusion.</p>
+                        </div>
+                        <div class="timeline-point"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Impacto Cultural e Legado</h2>
+                <p>
+                    Os jogos retros não são apenas relíquias do passado; eles são a fundação sobre a qual a indústria moderna foi construída. Muitos desenvolvedores de hoje foram inspirados por esses clássicos, e seus princípios de design continuam a influenciar a criação de novos jogos. A simplicidade, a jogabilidade cativante e a capacidade de contar histórias envolventes com recursos limitados são lições valiosas.
+                </p>
+                <p>
+                    A nostalgia desempenha um papel importante na popularidade contínua dos jogos retros, mas é a qualidade intrínseca desses títulos que garante sua relevância duradoura.
+                </p>
+            </section>
+        </main>
+    </div>
+
+    <div id="estatisticas" class="page">
+        <main class="main">
+            <h1>Estatísticas do Mundo Retro</h1>
+            
+            <section class="section">
+                <h2>A Popularidade e o Impacto dos Jogos Clássicos</h2>
+                <p>
+                    Os jogos retros continuam a ser uma força significativa no mercado de games, impulsionados pela nostalgia, pela acessibilidade através de emuladores e pela qualidade atemporal de muitos títulos. Vamos dar uma olhada em algumas estatísticas e tendências que mostram o poder desses clássicos.
+                </p>
+            </section>
+
+            <section class="section">
+                <h2>Vendas de Consoles Clássicos (Estimativas de Unidades Vendidas)</h2>
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>Console</th>
+                            <th>Lançamento</th>
+                            <th>Unidades Vendidas (Milhões)</th>
+                            <th>Jogos Mais Vendidos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nintendo Entertainment System (NES)</td>
+                            <td>1985 (NA)</td>
+                            <td>~61.91</td>
+                            <td>Super Mario Bros.</td>
+                        </tr>
+                        <tr>
+                            <td>Game Boy</td>
+                            <td>1989</td>
+                            <td>~118.69</td>
+                            <td>Tetris</td>
+                        </tr>
+                        <tr>
+                            <td>Super Nintendo (SNES)</td>
+                            <td>1990 (JP)</td>
+                            <td>~49.10</td>
+                            <td>Super Mario World</td>
+                        </tr>
+                        <tr>
+                            <td>Sega Genesis (Mega Drive)</td>
+                            <td>1988 (JP)</td>
+                            <td>~30.75</td>
+                            <td>Sonic the Hedgehog</td>
+                        </tr>
+                        <tr>
+                            <td>Game Boy Advance (GBA)</td>
+                            <td>2001</td>
+                            <td>~81.51</td>
+                            <td>Pokémon Ruby/Sapphire</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="small-text">
+                    <i>Dados baseados em estimativas globais.</i>
+                </p>
+            </section>
+
+            <section class="section">
+                <h2>Tendências de Download de ROMs (Exemplos Ilustrativos)</h2>
+                <p>
+                    Embora números exatos de downloads de ROMs sejam difíceis de rastrear publicamente devido à natureza não oficial, a demanda permanece alta. Plataformas de emulação e comunidades dedicadas a jogos retro frequentemente veem milhões de acessos e downloads mensais para os títulos mais populares.
+                </p>
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>Jogo (Exemplo)</th>
+                            <th>Console</th>
+                            <th>Downloads Estimados (por mês em sites populares)</th>
+                            <th>Popularidade na Comunidade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Super Mario World</td>
+                            <td>SNES</td>
+                            <td>Mais de 500.000</td>
+                            <td>Extremamente Alta (Hack-ROMs ativas)</td>
+                        </tr>
+                        <tr>
+                            <td>Pokémon Fire Red / Emerald</td>
+                            <td>GBA</td>
+                            <td>Mais de 800.000</td>
+                            <td>Altíssima (Base para inúmeras Hack-ROMs)</td>
+                        </tr>
+                        <tr>
+                            <td>The Legend of Zelda: A Link to the Past</td>
+                            <td>SNES</td>
+                            <td>Mais de 300.000</td>
+                            <td>Alta</td>
+                        </tr>
+                        <tr>
+                            <td>Donkey Kong Country</td>
+                            <td>SNES</td>
+                            <td>Mais de 250.000</td>
+                            <td>Alta</td>
+                        </tr>
+                        <tr>
+                            <td>Chrono Trigger</td>
+                            <td>SNES</td>
+                            <td>Mais de 200.000</td>
+                            <td>Cult Classic / Alta</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="small-text">
+                    <i>Estes são números ilustrativos e podem variar significativamente entre diferentes fontes e períodos.</i>
+                </p>
+            </section>
+
+            <section class="section">
+                <h2>O Mercado de Colecionáveis Retro</h2>
+                <p>
+                    Além dos downloads e emuladores, o mercado de jogos e consoles retro físicos tem crescido exponencialmente. Itens lacrados, edições raras e até cartuchos avulsos de jogos populares podem atingir valores exorbitantes em leilões e lojas especializadas. Isso demonstra não apenas a nostalgia, mas também o reconhecimento do valor histórico e cultural desses artefatos.
+                </p>
+                <p>
+                    Eventos e convenções dedicados a jogos retro atraem milhares de fãs anualmente, com torneios de clássicos e painéis de discussão sobre a preservação e o futuro do retro gaming.
+                </p>
+            </section>
+        </main>
+    </div>
 
     <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+        // JS para mudar as páginas, já presente no seu código original
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
             });
+            document.getElementById(pageId).classList.add('active');
+
+            document.querySelectorAll('.nav-menu button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById(pageId + '-btn').classList.add('active');
+        }
+
+        // Ativar a página inicial ao carregar
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('home');
         });
     </script>
 </body>

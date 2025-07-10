@@ -7,20 +7,22 @@
     <link rel="stylesheet" href="styles.css">
     <link href='https://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet'>
     <style>
-        /* Correções no CSS original */
+        /* Base styles */
         body {
-            font-family: 'Permanent Marker';
-            font-size: 24px;
+            font-family: 'Permanent Marker', cursive; /* Ensure the font is applied */
+            font-size: 24px; /* Base font size */
             background-color: #dcf9ff;
             color: #def2ff;
             display: flex;
-            justify-content: center;
-            flex-direction: column;
+            flex-direction: column; /* Stack content vertically */
+            align-items: center; /* Center content horizontally */
             text-align: center;
-            background-image: url('./portfolio/img/background-main.jpeg');
+            background-image: url('./portfolio/img/background-main.jpg');
             background-repeat: no-repeat;
             background-attachment: fixed;
-            background-size: 100% 100%;
+            background-size: cover; /* Use cover to ensure background fills the area */
+            min-height: 100vh; /* Ensure body takes full viewport height */
+            margin: 0; /* Remove default body margin */
         }
 
         img {
@@ -54,38 +56,41 @@
         h1 {
             background-color: #21a6ffbc;
             text-align: center;
-            height: auto;
+            padding: 1rem; /* Add padding for better appearance */
             opacity: 85%;
+            width: 100%; /* Ensure background spans full width */
+            box-sizing: border-box; /* Include padding in width */
         }
 
         h3 {
             background-color: #acf15ed1;
             text-align: center;
             color: white;
-            height: auto;
+            padding: 0.5rem; /* Add padding */
             opacity: 85%;
+            width: 100%; /* Ensure background spans full width */
+            box-sizing: border-box; /* Include padding in width */
         }
 
         div {
-            height: auto;
             opacity: 85%;
         }
 
         span {
             background-color: #ff3b3bdd;
-            height: auto;
             opacity: 85%;
         }
 
-        /* Transições otimizadas */
+        /* Optimized transitions */
         * {
             transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
         }
 
-        /* Estilos do header */
+        /* Header styles */
         .header {
             position: relative;
             min-height: 100vh;
+            width: 100%; /* Take full width */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -94,6 +99,7 @@
             padding: 2rem 1rem;
             color: white;
             overflow: hidden;
+            box-sizing: border-box;
         }
 
         .header::before {
@@ -112,6 +118,10 @@
             z-index: 2;
             max-width: 800px;
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .header h1 {
@@ -119,6 +129,8 @@
             margin-bottom: 1rem;
             font-weight: 700;
             letter-spacing: 1px;
+            background-color: transparent; /* Override global h1 background for header */
+            opacity: 1; /* Ensure full opacity for header text */
         }
 
         .tagline {
@@ -129,8 +141,10 @@
         }
 
         .profile-image {
-            width: clamp(16px, 10vw, 24px);
-            height: clamp(16px, 10vw, 24px);
+            /* Adjusted clamp values for a more appropriate size range */
+            width: clamp(150px, 30vw, 255px);
+            height: clamp(150px, 30vw, 255px);
+            border-radius: 50%; /* Make it circular */
             object-fit: cover;
             margin-top: 1.5rem;
             border: 4px solid rgba(255, 255, 255, 0.3);
@@ -144,19 +158,22 @@
             50% { transform: translateY(-10px); }
         }
 
-        /* Conteúdo principal */
+        /* Main content */
         .main {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
+            width: 100%; /* Ensure main takes full width up to max-width */
+            margin: 2rem auto; /* Add top margin and auto horizontal margin */
+            padding: 0 1rem; /* Horizontal padding */
+            box-sizing: border-box;
         }
 
         .section {
-            background-color: rgba(28, 103, 233, 0.146);
+            background-color: rgba(26, 33, 44, 0.678);
             padding: clamp(1.5rem, 5vw, 2.5rem);
             margin-bottom: 2rem;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 8px; /* Added for softer edges */
         }
 
         .section:hover {
@@ -171,13 +188,16 @@
             font-weight: 600;
             position: relative;
             display: inline-block;
+            background-color: transparent; /* Override global h2 background */
+            opacity: 1; /* Ensure full opacity */
         }
 
         .section h2::after {
             content: "";
             position: absolute;
             bottom: -8px;
-            left: 0;
+            left: 50%; /* Center the underline */
+            transform: translateX(-50%); /* Center the underline */
             width: 60px;
             height: 3px;
             background: linear-gradient(90deg, #2be991, #4dabfa);
@@ -187,118 +207,85 @@
             font-size: clamp(0.9rem, 2.5vw, 1.1rem);
             line-height: 1.7;
             margin-bottom: 1rem;
+            color: #eee; /* Lighten text color for better contrast */
         }
 
-        /* Layouts de grid */
-        .projects-grid, .games-grid {
-            display: grid;
-            gap: clamp(1rem, 3vw, 2rem);
-            margin-top: 2rem;        }
-
-        @media (min-width: 480px) {
-            .projects-grid, .games-grid {
-                grid-template-columns: 1fr;
-            }
+        /* Link specific styles within the section */
+        .section .portal-links {
+            display: flex;
+            flex-direction: column; /* Stack links on small screens */
+            gap: 15px; /* Space between links */
+            margin-top: 1.5rem;
+            justify-content: center; /* Center links horizontally */
+            align-items: center; /* Center items vertically if they were wrapped */
         }
 
-        @media (min-width: 768px) {
-            .projects-grid, .games-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .projects-grid, .games-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        /* Cards de projeto */
-        .project-card {
-            background-color: rgba(255, 255, 255, 0.9);
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), 0 12px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .project-image {
-            height: 200px;
-            background-color: #e1e8ed;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        .project-image::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(77, 172, 250, 0.1), rgba(43, 233, 145, 0.1));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .project-card:hover .project-image::before {
-            opacity: 1;
-        }
-
-        .project-info {
-            padding: 1.5rem;
-        }
-
-        .project-info h3 {
-            margin-bottom: 0.75rem;
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .project-info p {
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-            color: #333;
-            opacity: 0.8;
-        }
-
-        /* Botões */
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
+        .section .portal-links a {
+            display: block; /* Make links block-level for padding/margins */
+            padding: 15px 25px;
             background: linear-gradient(135deg, #4dabfa, #2b94e9);
             color: white;
             text-decoration: none;
-            font-weight: 500;
-            text-align: center;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            border-radius: 5px;
             transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 0.9rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 80%; /* Take up most of the width */
+            max-width: 300px; /* Limit max width for desktop */
+            font-weight: bold;
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(77, 172, 250, 0.3);
-            text-decoration: none;
+        .section .portal-links a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(77, 172, 250, 0.4);
+            background: linear-gradient(135deg, #2b94e9, #4dabfa); /* Slight gradient change on hover */
         }
 
-        /* Seção de contato */
-        .contact-info {
-            text-align: center;
+        /* Footer */
+        .footer {
+            margin-top: 3rem;
+            padding: 1.5rem 1rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #ccc;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
+            opacity: 85%;
         }
 
-        .contact-info .btn {
-            font-size: 1.1rem;
-            padding: 1rem 2rem;
-            margin-top: 1rem;
+        /* Media Queries for responsiveness */
+        @media (min-width: 768px) {
+            .section .portal-links {
+                flex-direction: row; /* Display links in a row on larger screens */
+                gap: 30px; /* More space between links */
+            }
+            .section .portal-links a {
+                width: auto; /* Allow links to size based on content */
+                flex: 1; /* Distribute space evenly */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .tagline {
+                font-size: 0.9rem;
+            }
+
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+
+            .section p {
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
@@ -307,7 +294,7 @@
         <div class="header-content">
             <h1>Azzy Novais</h1>
             <p class="tagline">Portal Principal</p>
-            <img src="./portfolio/img/minha-foto.jpg" alt="Meu avatar!" class="profile-image" style="width:255px;height:255px;"> 
+            <img src="./portfolio/img/minha-foto.png" alt="Meu avatar!" class="profile-image"> 
         </div>
     </header>
 
@@ -315,18 +302,21 @@
         <section class="section">
             <h2>Sobre Mim</h2>
             <p>
-                Bem-vindo ao portal de projetos e portfolio, clique nesses links para ter acesso as paginas </p>
-                <a href="./indexportfolio.html">Portfolios!</a>
+                Bem-vindo ao portal de projetos e portfólio! Aqui você encontrará acesso às minhas páginas dedicadas. Explore meus trabalhos e a paixão por jogos retro e tecnologia!
+            </p>
+            <div class="portal-links">
+                <a href="./indexportfolio.html">Portfólios!</a>
                 <a href="./indexjogoretros.html">Jogos Retros!</a>
+            </div>
         </section>
-
+    </main>
 
     <footer class="footer">
         <p>&copy; 2025 Azzy Novais - Todos os direitos reservados</p>
     </footer>
 
     <script>
-        // Smooth scrolling for anchor links
+        // Smooth scrolling for anchor links (if any were present, keeping this for completeness)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
